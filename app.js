@@ -52,12 +52,17 @@ store.on("error",()=>{
     console.log("ERROR in MONGO SESSION STORE",err);
 })
 
-const sessionOptions={secret:process.env.SECRET,resave:false,saveUninitialized:true,cookie:{
-    store:store,
-    expires:Date.now()+ 7*24*60*60*1000,
-    maxAge:7*24*60*60*1000,
-    httpOnly:true
-}};
+const sessionOptions = {
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: store, // <-- Move here
+    cookie: {
+        expires: Date.now() + 7*24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
+        httpOnly: true
+    }
+};
 
 // app.get("/",(req,res)=>{
 //     res.render("/listings/easter.ejs");
