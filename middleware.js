@@ -4,6 +4,7 @@ const ExpressError=require("./utils/ExpressError.js");
 const {listingSchema,reviewSchema}=require("./schema.js");
 
 module.exports.isLoggedIn=(req,res,next)=>{
+    //console.log(req.session);
     if(!req.isAuthenticated()){
         req.session.redirectUrl=req.originalUrl;
         req.flash("error","You must login first!");
